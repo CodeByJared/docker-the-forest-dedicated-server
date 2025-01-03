@@ -57,7 +57,7 @@ function startVirtualScreenAndRebootWine() {
 function installServer() {
     RANDOM_NUMBER=$RANDOM
     echo ">>> Forcing a fresh server install"
-    echo "> Setting server-name to jammsen-docker-generated-$RANDOM_NUMBER"
+    echo "> Setting server-name to BearDen-$RANDOM_NUMBER"
     isWineinBashRcExistent
     steamcmdinstaller.sh
     mkdir -p $SAVEGAME_PATH $CONFIG_PATH
