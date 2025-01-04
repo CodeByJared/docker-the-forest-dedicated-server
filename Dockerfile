@@ -1,11 +1,9 @@
 FROM jammsen/base:wine-stable-debian-bookworm
 
-LABEL maintainer="Sebastian Schmidt"
-
 ENV WINEPREFIX=/winedata/WINE64 \
     WINEARCH=win64 \
     DISPLAY=:1.0 \
-    TIMEZONE=Europe/Berlin \
+    TIMEZONE=America/New_York \
     DEBIAN_FRONTEND=noninteractive \
     PUID=0 \
     PGID=0 \
@@ -34,7 +32,7 @@ ENV WINEPREFIX=/winedata/WINE64 \
     SERVER_ALLOW_CHEATS="off" \
     SERVER_REALISTIC_PLAYER_DAMAGE="off" \
     SERVER_TARGET_FPS_IDLE="0" \
-    SERVER_TARGET_FPS_ACTIVE="0"
+    SERVER_TARGET_FPS_ACTIVE="165"
 
 VOLUME ["/theforest", "/steamcmd", "/winedata"]
 
@@ -42,7 +40,7 @@ EXPOSE 8766/tcp 8766/udp 27015/tcp 27015/udp 27016/tcp 27016/udp
 
 RUN dpkg --add-architecture i386 \
     && apt-get update \
-    && apt-get install -y --no-install-recommends --no-install-suggests ping lib32gcc-s1 winbind xvfb \
+    && apt-get install -y --no-install-recommends --no-install-suggests lib32gcc-s1 winbind xvfb \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ./usr/bin/servermanager.sh /usr/bin/servermanager.sh

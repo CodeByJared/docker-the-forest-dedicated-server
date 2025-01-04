@@ -1,11 +1,13 @@
 services:
   the-forest-dedicated-server:
     container_name: the-forest-dedicated-server
-    image: jammsen/the-forest-dedicated-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     environment:
-      - SERVER_STEAM_ACCOUNT_TOKEN=YOUR_TOKEN_HERE
-      - SERVER_IP=
+      - SERVER_STEAM_ACCOUNT_TOKEN=token-here
+      - SERVER_IP=server-ip-here
       - SERVER_STEAM_PORT=8766
       - SERVER_GAME_PORT=27015
       - SERVER_QUERY_PORT=27016
@@ -13,7 +15,7 @@ services:
       - SERVER_VAC=off
       - SERVER_PASSWORD=
       - SERVER_ADMIN_PASSWORD=
-      - SERVER_AUTO_SAVE_INTERVAL=30
+      - SERVER_AUTO_SAVE_INTERVAL=15
       - SERVER_DIFFICULTY=Normal
       - SERVER_INIT_TYPE=Continue
       - SERVER_SLOT=1
@@ -28,7 +30,7 @@ services:
       - SERVER_ALLOW_CHEATS=off
       - SERVER_REALISTIC_PLAYER_DAMAGE=off
       - SERVER_TARGET_FPS_IDLE=0
-      - SERVER_TARGET_FPS_ACTIVE=0
+      - SERVER_TARGET_FPS_ACTIVE=165
     ports:
       - 8766:8766/tcp
       - 8766:8766/udp
